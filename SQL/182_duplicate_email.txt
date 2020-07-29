@@ -1,0 +1,4 @@
+SELECT Email
+From person
+Group by Email
+Having COunt(Email)>1

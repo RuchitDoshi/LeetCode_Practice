@@ -1,0 +1,8 @@
+# Write your MySQL query statement below
+SELECT t.Request_at as 'Day', round((sum(case when t.Status = 'cancelled_by_driver' or t.Status = 'cancelled_by_client' then 1 else 0 end)/COUNT(t.Request_at)),2) as 'Cancellation Rate'
+from Trips as t
+INNER JOIN Users as u1
+ON t.client_id=u1.users_id 
+INNER JOIN Users as u2
+WHERE u1.Banned= 'no' and u2.Banned= 'no'  and (t.Request_at Between '2013-10-01' and '2013-10-03')
+Group By (t.Request_at)
