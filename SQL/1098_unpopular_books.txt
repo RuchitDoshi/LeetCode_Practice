@@ -1,0 +1,13 @@
+# Write your MySQL query statement below
+SELECT a.book_id,a.name
+FROM Books as a
+LEFT JOIN Orders as o
+ON o.book_id=a.book_id
+where a.available_from < date_sub('2019-06-23', interval 1 month)
+GROUP BY a.book_id,a.name
+HAVING sum(case when o.dispatch_date between '2018-06-23' and '2019-06-23'
+                then o.quantity 
+                when o.dispatch_date < '2018-06-23' or o.dispatch_date is null
+                then 0
+    end) < 10
+

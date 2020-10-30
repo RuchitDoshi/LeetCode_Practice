@@ -1,0 +1,6 @@
+# Write your MySQL query statement below
+
+SELECT a.id as P1, b.id as P2,(ABS(a.x_value-b.x_value)*ABS(a.y_value-b.y_value)) as AREA
+FROM Points as a, Points as b
+WHERE a.id<b.id and (ABS(a.x_value-b.x_value)*ABS(a.y_value-b.y_value)) > 0
+ORDER BY area DESC, P1 asc, P2 asc

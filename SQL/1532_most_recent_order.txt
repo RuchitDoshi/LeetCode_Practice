@@ -1,0 +1,14 @@
+# Write your MySQL query statement below
+WITH subquery as (
+    SELECT customer_id,order_id,order_date,RANK() OVER(partition by customer_id ORDER BY order_date DESC) as rank_part
+    FROM Orders
+)
+
+
+SELECT c.name as customer_name,R.customer_id,R.order_id,R.order_date
+From customers as c
+LEFT JOIN subquery as R
+ON c.customer_id=R.customer_id
+WHERE R.rank_part<=3
+ORDER BY customer_name asc,R.customer_id asc, R.order_date desc
+ 

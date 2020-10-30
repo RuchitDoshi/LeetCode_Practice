@@ -1,0 +1,4 @@
+# Write your MySQL query statement below
+SELECT gender,day, SUM(score_points) over(Partition by gender order by day) as total
+FROM Scores
+ORDER BY gender,day

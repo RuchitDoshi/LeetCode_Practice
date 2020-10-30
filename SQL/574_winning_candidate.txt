@@ -1,0 +1,11 @@
+# Write your MySQL query statement below
+SELECT a.name as Name
+from Candidate as a
+JOIN 
+(SELECT CandidateId
+from Vote
+Group by CandidateId
+ORDER BY COUNT(*) Desc
+LIMIT 1 ) as temp
+
+where temp.CandidateId=a.id

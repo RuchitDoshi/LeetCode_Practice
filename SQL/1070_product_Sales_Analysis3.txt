@@ -1,0 +1,8 @@
+# Write your MySQL query statement below
+WITH subquery as (SELECT product_id,quantity,price,year,
+                    RANK() OVER(PARTITION BY PRODUCT_ID ORDER BY YEAR) as rnk
+                FROM Sales)
+
+SELECT product_id,year as first_year,quantity,price
+from subquery
+WHERE rnk=1
