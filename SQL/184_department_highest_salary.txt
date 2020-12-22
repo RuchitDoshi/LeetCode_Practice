@@ -1,0 +1,9 @@
+# Write your MySQL query statement below
+WITH subquery as (SELECT DepartmentID, Salary, Name, Rank() Over(Partition By DepartmentId ORDER BY Salary Desc)as rnk
+                 FROM Employee)
+                 
+SELECT a.name as Department,s.name as Employee, s.Salary
+FROM Department as a
+JOIN subquery as s
+On a.id=s.departmentId
+WHERE s.rnk=1

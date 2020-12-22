@@ -1,0 +1,6 @@
+SELECT d.dept_name as dept_name,Count(s.student_id) as student_number
+FROM department as d
+LEFT JOIN student as s
+ON d.dept_id=s.dept_id
+GROUP BY d.dept_id
+ORDER BY student_number DESC, dept_name ASC
