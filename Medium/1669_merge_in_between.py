@@ -1,5 +1,5 @@
 class Solution:
-    def mergeInBetween(self, list1: ListNode, a: int, b: int, list2: ListNode) -> ListNode:
+    def mergeInBetween(self, list1, a, b, list2):
         
         t1=list1
         count=0
